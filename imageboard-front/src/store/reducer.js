@@ -3,7 +3,7 @@ import {
   FETCH_ERROR,
   FETCH_DATA_SUCCESS,
   POST_DATA,
-} from "./actions";
+} from "./actionTypes";
 
 const initialState = {
   messages: [],

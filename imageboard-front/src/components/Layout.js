@@ -5,8 +5,8 @@ const useStyles = makeStyles({
     padding: "10px 20px",
   },
   wrapper: {
-      padding: '20px 50px'
-  }
+    padding: "20px 50px",
+  },
 });
 
 const Layout = ({ children }) => {

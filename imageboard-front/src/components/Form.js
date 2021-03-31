@@ -1,39 +1,81 @@
 import { Button, FormControl, makeStyles, TextField } from "@material-ui/core";
+import { useState } from "react";
+import FileInput from "./UI/FileInput";
 
 const useStyles = makeStyles({
-    text: {
-        margin: '10px 0'
-    }
-})
-const Form = ({ change, submit }) => {
-    const classes = useStyles();
+  text: {
+    margin: "10px 0",
+  },
+  submitBtn: {
+    marginTop: 20,
+  },
+});
+const Form = (props) => {
+  const classes = useStyles();
+  const [data, setData] = useState({
+    author: "",
+    message: "",
+    image: "",
+  });
 
+  const changeHandler = (e) => {
+    const { name, value } = e.target;
+    setData((prevState) => {
+      return { ...prevState, [name]: value };
+    });
+  };
+
+  const fileChangeHandler = (e) => {
+    const name = e.target.name;
+    const file = e.target.files[0];
+
+    setData((prevState) => ({
+      ...prevState,
+      [name]: file,
+    }));
+  };
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    Object.keys(data).forEach((key) => {
+      formData.append(key, data[key]);
+    });
+    props.submit(formData);
+    setData({
+      author: "",
+      message: "",
+      image: "",
+    });
+  };
   return (
-    <form onSubmit={submit}>
+    <form onSubmit={submitHandler}>
       <FormControl fullWidth>
         <TextField
-        className={classes.text}
+          className={classes.text}
           variant='outlined'
           label='Author'
           name='author'
-          onChange={change}
+          value={data.author}
+          onChange={changeHandler}
         />
         <TextField
-        className={classes.text}
+          className={classes.text}
           variant='outlined'
           label='Message'
           name='message'
-          onChange={change}
+          value={data.message}
+          onChange={changeHandler}
         />
-        <TextField
-        className={classes.text}
-          variant='outlined'
-          label='Image'
-          name='image'
-          onChange={change}
-        />
+        <FileInput name='image' label='Image' onChange={fileChangeHandler} />
       </FormControl>
-      <Button color='primary' variant='contained'>SEND</Button>
+      <Button
+        color='primary'
+        variant='contained'
+        onClick={submitHandler}
+        className={classes.submitBtn}>
+        SEND
+      </Button>
     </form>
   );
 };

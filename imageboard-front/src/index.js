@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
-import Page from "./containers/Page/Page";
+import Page from "./containers/Page";
 import { applyMiddleware, createStore } from "redux";
 import reducer from "./store/reducer";
 import thunk from "redux-thunk";

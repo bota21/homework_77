@@ -4,8 +4,8 @@ import {
   CardMedia,
   makeStyles,
   Typography,
-} from "@material-ui/core";import imageUrl from "../imageUrl";
-;
+} from "@material-ui/core";
+import imageUrl from "../imageUrl";
 
 const useStyles = makeStyles({
   msgCard: {
@@ -32,6 +32,7 @@ const useStyles = makeStyles({
 
 const Message = ({ author, image, message }) => {
   const classes = useStyles();
+
   const cardImage = imageUrl.apiUrl + image;
 
   return (
