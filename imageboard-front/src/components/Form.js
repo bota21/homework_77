@@ -72,7 +72,7 @@ const Form = (props) => {
       <Button
         color='primary'
         variant='contained'
-        onClick={submitHandler}
+        type='submit'
         className={classes.submitBtn}>
         SEND
       </Button>
